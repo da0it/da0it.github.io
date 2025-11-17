@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для тебя ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ОСНОВА */
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      overscroll-behavior-y: contain;
+      height: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: radial-gradient(circle at top, #1e1e2f, #0d0d14 70%);
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ЛЕГКИЙ ШУМ — УДАРЕН ПО IPHONE, НО ЛЁГКАЯ ВЕРСИЯ */
+    body::before {
+      content: "";
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+      opacity: 0.07; /* был 0.15 */
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ОПТИМИЗИРОВАННЫЕ ЧАСТИЦЫ */
+    #particles {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;   /* уменьшено */
+      height: 4px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+
+    /* СЕКЦИИ */
+    .section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+
+      position: relative;
+      z-index: 5;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .title {
+      font-size: 2rem;
+      max-width: 900px;
+      margin-bottom: 24px;
+      line-height: 1.4;
+
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible .title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ФОТО — ЛЁГКАЯ ТЕНЬ */
+    img {
+      max-width: 82%;
+      max-height: 72vh;
+      border-radius: 20px;
+      object-fit: cover;
+      filter: brightness(0.97);
+
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35); /* облегчено */
+
+      opacity: 0;
+      transform: translateY(22px) scale(1.02);
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 2;
+
+      /* ГЛАВНОЕ: LAZY LOADING */
+      loading: lazy;
+    }
+
+    .section.visible img {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ПАРАЛЛАКС — ОЧЕНЬ ЛЁГКИЙ */
+    .parallax {
+      will-change: transform;
+    }
+
+    /* ФИНАЛЬНОЕ СЕРДЦЕ */
+    #heartFinal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 5rem;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      color: #ff7da6;
+      text-shadow: 0 0 15px rgba(255,120,150,0.6);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes heartBeat {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      40% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<!-- ВСЕ СЕКЦИИ БЕЗ ИЗМЕНЕНИЙ -->
+<div class="section"><div class="title">С днём рождения, любимая ❤️</div><img class="parallax" loading="lazy" src="sweet_1.jpg"></div>
+
+<div class="section"><div class="title">Спасибо тебе за счастье, которое ты приносишь</div><img class="parallax" loading="lazy" src="Sweet_2.jpg"></div>
+
+<div class="section"><div class="title">Каждый момент с тобой — лучший</div><img class="parallax" loading="lazy" src="sweet_3.jpg"></div>
+
+<div class="section"><div class="title">Но хватит про нас... Давай немного про то, что я в тебе люблю больше всего ❤️❤️❤️</div><img class="parallax" loading="lazy" src="sweet_4.jpg"></div>
+
+<div class="section"><div class="title">Больше всего я, конечно, люблю твою улыбку 🥰</div></div>
+
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_3.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_2.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_1.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_4.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_5.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="smile_6.jpg"></div>
+
+<div class="section"><div class="title">Легко любить улыбку, но и в сложные моменты ты всегда на высоте!</div></div>
+
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_5.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_6.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_7.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_10.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_11.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_9.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_8.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_4.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_3.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_2.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="confused_1.jpg"></div>
+
+<div class="section"><div class="title">В тебе есть какая-то изюминка...🌠🌠🌠</div></div>
+
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_1.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_2.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_3.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_4.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_5.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_6.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_7.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_8.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_9.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_10.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_11.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="goofy_12.jpg"></div>
+
+<div class="section"><div class="title">И даже в моменты сна, ты - прекрасна!💍💎👑</div></div>
+
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_1.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_2.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_3.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_4.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_5.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_6.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_7.jpg"></div>
+<div class="section"><div class="title"></div><img class="parallax" loading="lazy" src="sleep_8.jpg"></div>
+
+<div class="section">
+  <div class="title">Спасибо, что ты есть! С днем рождения!🥳</div>
+  <div id="heartFinal">❤️</div>
+  <img id="endPhoto" class="parallax" loading="lazy" src="end.jpg">
+</div>
+
+<!-- SCRIPT -->
+<script>
+  /* ПОЯВЛЕНИЕ СЕКЦИЙ */
+  const sections = document.querySelectorAll(".section");
+
+  function reveal() {
+    const trigger = window.innerHeight * 0.85;
+
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top < trigger && rect.bottom > 0) {
+        sec.classList.add("visible");
+      }
+    });
+  }
+
+  ["scroll", "load", "resize", "orientationchange"].forEach(evt =>
+    window.addEventListener(evt, reveal)
+  );
+
+  setInterval(reveal, 120); /* меньше нагрузки */
+
+  /* ПАРАЛЛАКС — ОЧЕНЬ ЛЁГКИЙ */
+  const photos = document.querySelectorAll('.parallax');
+
+  window.addEventListener('scroll', () => {
+    photos.forEach(img => {
+      const rect = img.getBoundingClientRect();
+      img.style.transform = `translateY(${rect.top / 40}px)`; /* был /20 — теперь легче */
+    });
+  });
+
+  /* ОПТИМИЗИРОВАННЫЕ ЧАСТИЦЫ */
+  function createParticles() {
+    const container = document.getElementById("particles");
+    for (let i = 0; i < 10; i++) { /* был 50 */
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = 5 + Math.random() * 4 + "s";
+      container.appendChild(p);
+      setTimeout(() => p.remove(), 9000);
+    }
+  }
+  setInterval(createParticles, 1500);
+
+  /* СЕРДЦЕ */
+  const endPhoto = document.getElementById("endPhoto");
+  const heartFinal = document.getElementById("heartFinal");
+
+  function checkEndHeart() {
+    const rect = endPhoto.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.6 && rect.bottom > 0) {
+      heartFinal.style.animation = "heartBeat 2.2s ease";
+    }
+  }
+
+  window.addEventListener("scroll", checkEndHeart);
+</script>
+
+</body>
+</html>
